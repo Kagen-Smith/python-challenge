@@ -27,30 +27,27 @@ def place_order(menu):
     # Launch the store and present a greeting to the customer
     print("Welcome to the Generic Take Out Restaurant.")
 
-    # TODO: Create a continuous while loop so customers can order multiple items
-
-        # TODO: Ask the customer what they want to order
-
-
-        # Create a variable for the menu item number
-        i = 1
-
-        # Print the menu header
+    place_order = True
+    # Create a continuous while loop so customers can order multiple items
+    while place_order:
+        print("What would you like to order? ")
+        index = 1
         print_menu_heading()
+    
+        # Loop through the menu dictionary, extracting the food category and the options for each category
+        for food_category, options in menu.items():
 
-        # TODO: Loop through the menu dictionary
-        # TODO: Extract the food category and the options for each category
-
-            # TODO: Loop through the options for each food category
-            # TODO: Extract the meal and the price for each option
+            # Loop through the options for each food category, extracting the meal and the price
+            for meal, price in options.items():
 
                 # Print the menu item number, food category, meal, and price
-                # TODO: Only if you used different variable names
-                # TODO: Update the variable names in the following function
-                print_menu_line(i, food_category, meal, price)
+                print_menu_line(index, food_category, meal, price)
 
                 # Update the menu selection number
-                i += 1
+                index += 1
+                
+        # Ask customer to input menu item number
+        menu_selection = input("Type menu number: ")
 
         # TODO: Ask customer to input menu item number
 
