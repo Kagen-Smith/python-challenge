@@ -92,37 +92,43 @@ def update_order(order, menu_selection, menu_items):
     order (list): A list of dictionaries containing the menu item name, price,
                     and quantity ordered (updated as needed).
     """
-    # TODO: Check if the customer typed a number
+    # Check if the customer's input string can be converted to an integer and prints an error message if it does not
+    if not menu_selection.isdigit():
+        print(f"{menu_selection} was not a menu option.")
+    else:
 
-        # TODO: Convert the menu selection to an integer
+        # Convert the menu selection to an integer
+        menu_selection = int(menu_selection)
 
+        # Write a conditional statement that checks if the customer's input is an item on the menu and prints an error message if it is not
+        if not menu_selection in menu_items.keys():
+            print("Sorry, that number isn't an option.")
+        else:
+        
+            # Store the item name as a variable
+            item_name = menu_items[menu_selection]["Item name"]
 
-        # TODO: Check if the menu selection is in the menu items keys
+            # A prompt (input) to the customer that prints the name of the menu item to the user and asks the quantity they would like to order.
+            # Store the return in a quantity variable
+            quantity = input(f"What quantity of {item_name} would you like? \n(This will default to 1 if number is not entered)\n")
 
-            # TODO: Store the item name as a variable
+            # Write a conditional statement that checks if the input quantity can be converted to an integer, then converts it to an integer. 
+            # Have it default to 1 if it does not.
+            if quantity.isdigit():
+                quantity = int(quantity)
+            else:
+                quantity = 1
 
-
-            # TODO: Ask the customer for the quantity of the menu item
-            # TODO: Use the item name variable in the question
-
-
-            # TODO: Check if the quantity is a number, default to 1 if not
-
-
-            # TODO: Add a dictionary to the order list 
-            # TODO: The dictionary should include the item name, price, and quantity
-            # TODO: Use the following names for the dictionary keys:
-            # TODO: "Item name", "Price", "Quantity"
-
-        # TODO: When the user's input isn't valid, 
-        # TODO: tell the customer that their input isn't valid
-
-    # TODO: When the menu selection wasn't valid:
-    # TODO: Print the menu selection and 
-    # TODO: Tell the customer they didn't select a menu option
-
-
-    # TODO: Return the updated order
+            # Add a dictionary with the item name, price, and quantity to the order list. Use the following names for the dictionary keys:
+            # "Item name", "Price", "Quantity"
+            order.append({
+                "Item name": item_name,
+                "Price": menu_items[menu_selection]["Price"],
+                "Quantity": quantity
+            })
+            
+    # Return the updated order
+    return orderr
 
 
 def print_itemized_receipt(receipt):
@@ -136,13 +142,17 @@ def print_itemized_receipt(receipt):
     # Uncomment the following line if you need to check the structure of the receipt
     #print(receipt)
 
-    # TODO: Loop through the items in the customer's receipt
+    # Loop through the items in the customer's receipt
+    for item in receipt:
+    
+        # Store the dictionary items ("Item name", "Price", "Quantity") as variables
+        item_name = item["Item name"]
+        price = item["Price"]
+        quantity = item["Quantity"]
 
-        # TODO Store the dictionary items as variables
+        # Print the receipt line using the print_receipt_line function send the item name, price, and quantity as separate arguments
+        print_receipt_line(item_name, price, quantity)
 
-
-        # TODO: Print the receipt line using the print_receipt_line function
-        # TODO: Send the item name, price, and quantity as separate arguments
 
 
 ##################################################
